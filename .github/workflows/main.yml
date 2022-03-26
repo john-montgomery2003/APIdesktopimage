@@ -72,7 +72,8 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_DEFAULT_OUTPUT: json
 
       - name: Download Lambda app.zip
         uses: actions/download-artifact@v2
@@ -83,18 +84,21 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_DEFAULT_OUTPUT: json
+          
       - name: Upload to S3
         run: aws s3 cp app.zip s3://eve-desktop-app/app.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_DEFAULT_OUTPUT: json
+          
       - name: Deploy new Lambda
         run: aws lambda update-function-code --function-name eve-desktop-app --s3-bucket eve-desktop-app --s3-key app.zip
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          AWS_DEFAULT_REGION: us-east-1
+          AWS_DEFAULT_OUTPUT: json
