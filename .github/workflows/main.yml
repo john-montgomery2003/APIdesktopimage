@@ -32,7 +32,7 @@ jobs:
 
       - name: Create Zipfile archive of Dependencies
         run:
-            zip app.zip venv app
+            zip -r app.zip venv app
 
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v2
