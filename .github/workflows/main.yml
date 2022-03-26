@@ -30,12 +30,8 @@ jobs:
       - name: Install dependencies
         run: pip3 install -r requirements.txt
 
-      - name: Build and Run Test
-        run: . venv/bin/activate && pytest
-
       - name: Create Zipfile archive of Dependencies
-        run: |
-            ls
+        run:
             zip app.zip venv app
 
       - name: Upload zip file artifact
