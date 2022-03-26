@@ -4,7 +4,7 @@ from mangum import Mangum
 app = FastAPI(title='Serverless Lambda FastAPI')
 
 
-@app.get("/")
+@app.get("/ha")
 def main_endpoint_test():
     return {"message": "Welcome CI/CD Pipeline with GitHub Actions!"}
 
